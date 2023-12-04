@@ -1,3 +1,5 @@
+// link to the problem ---> https://leetcode.com/problems/longest-common-prefix/description/?envType=study-plan-v2&envId=top-interview-150
+
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& v) {
