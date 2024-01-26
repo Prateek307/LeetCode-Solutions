@@ -5,15 +5,32 @@ class Solution
 public:
     int longestConsecutive(vector<int> &nums)
     {
+        set<int> st;
+        int i;
         if (nums.size() == 0)
             return 0;
-        sort(nums.begin(), nums.end());
-        int i, len = 1, n = nums.size();
+        for (i = 0; i < nums.size(); i++)
+        {
+            st.insert(nums[i]);
+        }
+        vector<int> temp;
+        for (auto it : st)
+            temp.push_back(it);
+        int n = temp.size();
+        int cnt = 1, ans = 1;
         for (i = 1; i < n; i++)
         {
-            if (nums[i] == nums[i - 1] + 1)
-                len++;
+            if (temp[i] == temp[i - 1] + 1)
+            {
+                cnt++;
+                ans = max(cnt, ans);
+            }
+            else
+            {
+                ans = max(cnt, ans);
+                cnt = 1;
+            }
         }
-        return len;
+        return ans;
     }
 };
