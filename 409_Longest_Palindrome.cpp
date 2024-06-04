@@ -1,28 +1,23 @@
-// link to the problem ---> https://leetcode.com/problems/longest-palindrome/submissions/1272238496/
+// link to the problem ---> https://leetcode.com/problems/longest-palindrome
 
-class Solution
-{
+class Solution {
 public:
-    int longestPalindrome(string s)
+int longestPalindrome(string s)
+{
+    int odd = 0;
+    map<char, int> m;
+    int i;
+    for (i = 0; i < s.size(); i++)
     {
-        int len = 0;
-        int remain = 0;
-        unordered_map<char, int> m;
-        for (auto ch : s)
-        {
-            m[ch]++;
-        }
-        for (auto it = m.begin(); it != m.end(); it++)
-        {
-            if (remain == 0)
-            {
-                if (it->second % 2 == 1)
-                {
-                    remain++;
-                }
-            }
-            len += it->second / 2;
-        }
-        return len * 2 + remain;
+        m[s[i]]++;
+        if (m[s[i]] & 1)
+            odd++;
+        else
+            odd--;
     }
-};
+    if (odd > 1)
+        return s.length() - odd + 1;
+    return s.length();
+}
+}
+;
