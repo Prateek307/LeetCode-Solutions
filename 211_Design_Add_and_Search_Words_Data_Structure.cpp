@@ -1,0 +1,40 @@
+// link to the problem --->https://leetcode.com/problems/design-add-and-search-words-data-structure/
+
+class WordDictionary
+{
+public:
+    WordDictionary()
+    {
+        // Constructor
+    }
+
+    void addWord(string word)
+    {
+        wordsSet.insert(word);
+    }
+
+    bool search(string word)
+    {
+        for (const string &savedWord : wordsSet)
+        {
+            if (savedWord.length() != word.length())
+                continue;
+
+            bool wordsMatch = true;
+            for (int i = 0; i < word.length(); i++)
+            {
+                if (word[i] != '.' && savedWord[i] != word[i])
+                {
+                    wordsMatch = false;
+                    break;
+                }
+            }
+            if (wordsMatch)
+                return true;
+        }
+        return false;
+    }
+
+private:
+    unordered_set<string> wordsSet;
+};
